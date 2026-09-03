@@ -58,6 +58,9 @@ class Patricia{
 
         void tratamento(string& palavra){
 
+            if (palavra[0] < 'a' || palavra[0] > 'z')
+            return;
+
             transform(palavra.begin(), palavra.end(), palavra.begin(), [](unsigned char c) {
                 return tolower(c);
             });
@@ -79,13 +82,15 @@ class Patricia{
         }
 
         //Inserção Recursiva
-        PatriciaNode* inserirRecursivo(PatriciaNode* nodeAtual, string palavra){
+        void inserirRecursivo(PatriciaNode* nodeAtual, const string& palavra){
+
+            acessos++;
 
             //Se a palavra for vazia, marca o node como o fim da palavra
             if (palavra.empty()){
 
                 nodeAtual->ehPalavra = true;
-                return nodeAtual;
+                return ;
 
             }
 
@@ -100,7 +105,7 @@ class Patricia{
                 nosAlocados++;
                 totalCriados++;
 
-                return nodeAtual;
+                return ;
 
             }
             
@@ -113,13 +118,14 @@ class Patricia{
                 if (k == palavra.size()){
 
                     filho->ehPalavra = true;
+                
                 }else{
 
-                    inserirRecursivo(filho,palavra.substr(k));
+                    inserirRecursivo(filho, palavra.substr(k));
 
                 }
 
-                return nodeAtual;
+                return ;
 
             }     
 
@@ -152,7 +158,7 @@ class Patricia{
             }
 
             nodeAtual->filho[index] = meio;
-            return nodeAtual;
+            return ;
         }
 
 
@@ -175,6 +181,8 @@ class Patricia{
         }
 
         void inserir(string palavra){
+
+            acessos = 0;
 
             tratamento(palavra);
 
