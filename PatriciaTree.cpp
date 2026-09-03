@@ -27,17 +27,6 @@ struct PatriciaNode{
 
     }
 
-    void tratamento(string& word){
-
-            //Trata a palavra para ficar com letras minúsculas
-
-            transform(word.begin(), word.end(), word.begin(), [](unsigned char c) {
-                return std::tolower(c);
-            });
-
-
-    }
-
 };
 
 //----------------------------------------------------------------------------------------------------------------
@@ -67,15 +56,104 @@ class Patricia{
 
         }
 
-        void tratamento(string palavra){
+        void tratamento(string& palavra){
 
             transform(palavra.begin(), palavra.end(), palavra.begin(), [](unsigned char c) {
                 return tolower(c);
             });
 
-
         }
 
+        int calcularPrefixoComum(const string& a, const string& b ){
+            
+            int i = 0;
+            int limite = min(a.size() , b.size());
+            
+            while(i < limite && a[i] == b[i] ){
+
+                i++;
+
+            } 
+            return i;
+        
+        }
+
+        //Inserção Recursiva
+        PatriciaNode* inserirRecursivo(PatriciaNode* nodeAtual, string palavra){
+
+            //Se a palavra for vazia, marca o node como o fim da palavra
+            if (palavra.empty()){
+
+                nodeAtual->ehPalavra = true;
+                return nodeAtual;
+
+            }
+
+            int index = palavra[0] - 'a';
+            PatriciaNode* filho = nodeAtual->filho[index];
+
+            //Caso 1: Ramo não existe, criar a folha
+            if (filho == nullptr){
+
+                nodeAtual->filho[index] = new PatriciaNode(palavra, true);
+
+                nosAlocados++;
+                totalCriados++;
+
+                return nodeAtual;
+
+            }
+            
+            //Caso 2: Ramo já existe, obtém o prefixo comum entre a palavra e rotulo do filho
+            int k = calcularPrefixoComum(palavra, filho->rotulo);
+
+            //Cenário A:Coincidencia total com o rotulo e o filho
+            if (k == filho->rotulo.size()){
+
+                if (k == palavra.size()){
+
+                    filho->ehPalavra = true;
+                }else{
+
+                    inserirRecursivo(filho,palavra.substr(k));
+
+                }
+
+                return nodeAtual;
+
+            }     
+
+            //Cenário B:Divergencia no meio do rotulo
+            string prefixo = filho->rotulo.substr(0,k);
+            string fimRotulo = filho->rotulo.substr(k);
+            string fimPrefixo = palavra.substr(k);
+
+            PatriciaNode* meio =new PatriciaNode(prefixo,false);
+            nosAlocados++;
+            totalCriados++;
+
+            filho->rotulo = fimRotulo;
+            int indexFimRotulo = fimRotulo[0]-'a';
+            meio->filho[indexFimRotulo] = filho;
+
+
+            if (fimPrefixo.empty()){
+
+                meio->ehPalavra = true;
+
+            }else{
+
+                int indexFimPrefixo = fimPrefixo[0]-'a';
+                meio->filho[indexFimPrefixo] = new PatriciaNode(fimPrefixo,true);
+
+                nosAlocados++;
+                totalCriados++;
+
+            }
+
+            nodeAtual->filho[index] = meio;
+            return nodeAtual;
+        }
 
 
     public:
@@ -104,72 +182,7 @@ class Patricia{
                 return;
             }
 
-            int index = palavra[0] - 'a';
-            PatriciaNode* pn = raiz->filho[index];
-
-            if (pn == nullptr) {
-
-                raiz->filho[index] = new PatriciaNode(palavra, true); //se tiver vazio já isere a palavra
-
-                nosAlocados++;
-                totalCriados++;
-
-
-            }else{
-                
-                string prefixo = "";
-                bool divergiu = false;
-                
-                int limite = min(palavra.size(), pn->rotulo.size());
-
-                for (int i = 0; i < limite; i++){                    
-                   
-                    if(palavra[i] == pn->rotulo[i]){
-
-                        prefixo += palavra[i]; 
-
-                    }
-                    else{
-
-                        divergiu = true;
-                        break;
-
-                    }
-                
-                }
-
-                string fimPrefixo = palavra;
-                string fimRotulo = pn->rotulo;
-
-                fimPrefixo.erase(0, prefixo.length());
-                fimRotulo.erase(0, prefixo.length());
-
-
-                PatriciaNode* antigo = new PatriciaNode(fimRotulo, pn->ehPalavra);  //Cria um filho que vai herdar a palavra antiga, e por isso os filhos antigo vão ser seu filhos
-                for(int i = 0; i < 26; i++){
-                    antigo->filho[i] = pn->filho[i];
-                }
-
-                PatriciaNode* novo   = new PatriciaNode(fimPrefixo, true);  //Cria um filho novo com a palavra recém colocada
-
-                for (int i = 0; i < 26; i++) {  //Limpar os filhos de pn     
-                    pn->filho[i] = nullptr;
-                }
-
-                pn->rotulo = prefixo;   //O nó original agora é só o prefixo e agora ele não é mais o final da palavra
-                pn->ehPalavra = false;
-
-                int indexAntigo = fimRotulo[0] - 'a';
-                int indexNovo = fimPrefixo[0] - 'a';
-
-                pn->filho[indexAntigo] = antigo;
-                pn->filho[indexNovo] = novo;
-
-                nosAlocados += 2;
-                totalCriados += 2;
-
-            }   
-
+            inserirRecursivo(raiz,palavra);
             
         }
 
