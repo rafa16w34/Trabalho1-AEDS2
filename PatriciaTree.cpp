@@ -58,12 +58,13 @@ class Patricia{
 
         void tratamento(string& palavra){
 
-            if (palavra[0] < 'a' || palavra[0] > 'z')
-            return;
-
-            transform(palavra.begin(), palavra.end(), palavra.begin(), [](unsigned char c) {
-                return tolower(c);
-            });
+            string limpa = "";
+            for (char c : palavra) {
+                if (isalpha(c)) {
+                    limpa += tolower(c);
+                }
+            }
+            palavra = limpa;
 
         }
 
@@ -95,10 +96,13 @@ class Patricia{
             }
 
             int index = palavra[0] - 'a';
+            
             PatriciaNode* filho = nodeAtual->filho[index];
 
             //Caso 1: Ramo não existe, criar a folha
             if (filho == nullptr){
+
+                acessos++;
 
                 nodeAtual->filho[index] = new PatriciaNode(palavra, true);
 
@@ -117,6 +121,7 @@ class Patricia{
 
                 if (k == palavra.size()){
 
+                    acessos++;
                     filho->ehPalavra = true;
                 
                 }else{
@@ -133,6 +138,8 @@ class Patricia{
             string prefixo = filho->rotulo.substr(0,k);
             string fimRotulo = filho->rotulo.substr(k);
             string fimPrefixo = palavra.substr(k);
+
+            index = prefixo[0] - 'a';
 
             PatriciaNode* meio =new PatriciaNode(prefixo,false);
             nosAlocados++;
@@ -161,6 +168,76 @@ class Patricia{
             return ;
         }
 
+        //Busca Recursiva
+        bool BuscarRecursiva(PatriciaNode* nodeAtual, const string& palavra){
+
+            acessos++;
+
+            if(palavra.empty()){
+
+                return nodeAtual->ehPalavra;
+
+            }
+
+            int index = palavra[0] - 'a';
+            PatriciaNode* filho = nodeAtual->filho[index];
+
+            if (filho == nullptr){
+
+                return false;
+
+            }
+
+            int k = calcularPrefixoComum(palavra, filho->rotulo);
+
+            if(k<filho->rotulo.size()){
+
+                return false;
+
+            }
+
+            return BuscarRecursiva(filho,palavra.substr(k));
+
+        }
+
+        //Começa Com ... Recursivo
+        bool ComecaComRecursivo(PatriciaNode* nodeAtual, const string& prefixo){
+
+            acessos++;
+
+            if(prefixo.empty()){
+
+                return true;
+
+            }
+
+            int index = prefixo[0] - 'a';
+            PatriciaNode* filho = nodeAtual->filho[index];
+            
+            if(filho == nullptr){
+
+                return false;
+
+            }
+
+            int k = calcularPrefixoComum(prefixo, filho->rotulo);
+
+            if(k == prefixo.size()){
+
+                return true;
+
+            }
+
+            if(k == filho->rotulo.size()){
+
+                return ComecaComRecursivo(filho,prefixo.substr(k));
+
+            }
+
+            return false;
+
+
+        }
 
     public:
 
@@ -194,11 +271,30 @@ class Patricia{
             
         }
 
-        bool buscar(){
+        bool buscar(string palavra){
+
+            acessos = 0;
+            tratamento(palavra);
+
+            if(palavra.empty()){
+                return false;
+            }
+
+            return BuscarRecursiva(raiz,palavra);
+            
 
         }
 
-        bool comecaCom(){
+        bool comecaCom(string palavra){
+
+                        acessos = 0;
+            tratamento(palavra);
+
+            if(palavra.empty()){
+                return false;
+            }
+
+            return ComecaComRecursivo(raiz,palavra);
 
         }
 
