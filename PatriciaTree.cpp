@@ -239,6 +239,102 @@ class Patricia{
 
         }
 
+        int ContarFilhos(PatriciaNode* node){
+
+            int cont = 0;
+            for(int i = 0; i<26;i++){
+
+                if(node->filho[i] != nullptr){
+
+                    cont++;
+
+                }
+            }
+            return cont;
+        }
+
+        int ObterIndexFilho(PatriciaNode* node){
+
+            for(int i =0; i < 26; i++){
+
+                if(node->filho[i] != nullptr){
+
+                    return i;
+
+                }
+
+            }
+
+            return -1;
+
+        }
+
+        bool RemocaoRecursiva(PatriciaNode* node, const string& palavra){
+
+            acessos++;
+
+            if(palavra.empty()){
+
+                if(!(node->ehPalavra)){
+                    return false;
+                }
+
+                node->ehPalavra = false;
+                return true;
+            }
+
+            int index = palavra[0] - 'a';
+            PatriciaNode* filho = node->filho[index];
+
+            if(filho == nullptr){
+
+                return false;
+
+            }
+
+            int k = calcularPrefixoComum(palavra,filho->rotulo);
+
+            if(k<filho->rotulo.size()){
+
+                return false;
+
+            }
+
+            bool removido = RemocaoRecursiva(filho, palavra.substr(k));
+
+            if(!(removido)){
+
+                return false;
+
+            }
+
+            //Pós Ordem
+            int nFilhos = ContarFilhos(filho);
+            
+            //Caso 1
+            if((nFilhos==0) && !(filho->ehPalavra)){
+
+                delete filho;
+                node->filho[index] = nullptr;
+                nosAlocados--;
+            }
+
+            //Caso 2
+            else if((nFilhos == 1) && !(filho->ehPalavra)){
+
+                int indexFilhoFilho = ObterIndexFilho(filho);
+                PatriciaNode* filhoFilho = filho->filho[indexFilhoFilho];
+
+                filhoFilho->rotulo = filho->rotulo + filhoFilho->rotulo;
+                node->filho[index] = filhoFilho;
+
+                delete filho;
+                nosAlocados--;
+
+            }
+            return true;
+        }
+
     public:
 
         Patricia(){
@@ -298,11 +394,26 @@ class Patricia{
 
         }
 
-        void remover(){
+        bool remover(string palavra){
+
+            acessos = 0;
+            tratamento(palavra);
+
+            if (palavra.empty()){
+
+                return false;
+
+            }
+
+            return RemocaoRecursiva(raiz,palavra);
 
         }
 
         void estatisticas(){
+
+            cout << "Nos na memoria: " << nosAlocados << endl;
+            cout << "Total de nos criados: " << totalCriados << endl;
+            cout << "Acessos na ultima operacao: " << acessos << endl;
 
         }
 
