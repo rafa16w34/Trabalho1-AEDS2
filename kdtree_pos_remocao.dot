@@ -1,0 +1,10 @@
+digraph KDTree {
+    node [shape=record, style=filled, fillcolor=lightgreen];
+    node0x61c22d7272f0 [label="(51, 75) | Eixo 0"];
+    node0x61c22d7272f0 -> node0x61c22d727360 [label="<"];
+    node0x61c22d727360 [label="(35, 90) | Eixo 1"];
+    node0x61c22d727360 -> node0x61c22d727400 [label="<"];
+    node0x61c22d727400 [label="(10, 30) | Eixo 0"];
+    node0x61c22d7272f0 -> node0x61c22d7273b0 [label=">="];
+    node0x61c22d7273b0 [label="(70, 70) | Eixo 1"];
+}
