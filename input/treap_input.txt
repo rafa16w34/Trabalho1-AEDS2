@@ -1,0 +1,12 @@
+# Arquivo de entrada para Treap Tree (Chaves Inteiras)
+# Comandos suportados: INSERT chave | SEARCH chave | REMOVE chave
+INSERT 50
+INSERT 30
+INSERT 70
+INSERT 20
+INSERT 40
+INSERT 60
+INSERT 80
+INSERT 50
+SEARCH 30
+REMOVE 30

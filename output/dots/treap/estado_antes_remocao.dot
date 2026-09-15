@@ -1,0 +1,16 @@
+digraph TreapTree {
+    node [shape=record, style=filled, fillcolor=lightblue];
+    node0x5f27b2dd6d60 [label="70\np=2064033946"];
+    node0x5f27b2dd6d60 -> node0x5f27b2dd6bd0 [label="L"];
+    node0x5f27b2dd6bd0 [label="40\np=1871308129"];
+    node0x5f27b2dd6bd0 -> node0x5f27b2dd6c20 [label="L"];
+    node0x5f27b2dd6c20 [label="30\np=1392807282"];
+    node0x5f27b2dd6c20 -> node0x5f27b2dd6c70 [label="L"];
+    node0x5f27b2dd6c70 [label="20\np=1079002602"];
+    node0x5f27b2dd6bd0 -> node0x5f27b2dd6cc0 [label="R"];
+    node0x5f27b2dd6cc0 [label="50\np=1529890459"];
+    node0x5f27b2dd6cc0 -> node0x5f27b2dd4840 [label="R"];
+    node0x5f27b2dd4840 [label="60\np=1212316172"];
+    node0x5f27b2dd6d60 -> node0x5f27b2dd93f0 [label="R"];
+    node0x5f27b2dd93f0 [label="80\np=2000460543"];
+}

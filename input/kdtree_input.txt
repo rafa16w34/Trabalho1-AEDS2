@@ -1,0 +1,11 @@
+# Arquivo de entrada para KD-Tree (Pontos 2D)
+# Comandos suportados: INSERT x y | SEARCH x y | NNS x y | RANGE minX minY maxX maxY | REMOVE x y
+INSERT 51.0 75.0
+INSERT 25.0 40.0
+INSERT 70.0 70.0
+INSERT 10.0 30.0
+INSERT 35.0 90.0
+INSERT 55.0 10.0
+NNS 30.0 45.0
+RANGE 20.0 35.0 60.0 80.0
+REMOVE 25.0 40.0

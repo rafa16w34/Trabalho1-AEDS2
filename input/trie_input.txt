@@ -1,0 +1,11 @@
+# Arquivo de entrada para Trie (Strings)
+# Comandos suportados: INSERT palavra | SEARCH palavra | STARTSWITH prefixo | REMOVE palavra
+INSERT algoritmo
+INSERT arvore
+INSERT arvores
+INSERT busca
+INSERT banco
+INSERT banana
+SEARCH banco
+STARTSWITH algo
+REMOVE banco

@@ -1,0 +1,11 @@
+# Arquivo de entrada para Árvore Patricia (Strings)
+# Comandos suportados: INSERT palavra | SEARCH palavra | STARTSWITH prefixo | REMOVE palavra
+INSERT algoritmo
+INSERT arvore
+INSERT arvores
+INSERT busca
+INSERT banco
+INSERT banana
+SEARCH arvore
+STARTSWITH ban
+REMOVE arvore
