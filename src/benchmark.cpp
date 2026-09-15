@@ -7,11 +7,11 @@
 #include <fstream>
 #include <algorithm>
 
-#include "KDTree.hpp"
-#include "PatriciaTree.hpp"
-#include "SplayTree.hpp"
-#include "TreapTree.hpp"
-#include "TrieTree.hpp"
+#include "KDTree/KDTree.hpp"
+#include "Patricia/PatriciaTree.hpp"
+#include "Splay/SplayTree.hpp"
+#include "Treap/TreapTree.hpp"
+#include "Trie/TrieTree.hpp"
 
 using namespace std;
 using namespace std::chrono;

@@ -6,11 +6,11 @@
 #include <filesystem>
 #include <cstdlib>
 
-#include "KDTree.hpp"
-#include "PatriciaTree.hpp"
-#include "SplayTree.hpp"
-#include "TreapTree.hpp"
-#include "TrieTree.hpp"
+#include "KDTree/KDTree.hpp"
+#include "Patricia/PatriciaTree.hpp"
+#include "Splay/SplayTree.hpp"
+#include "Treap/TreapTree.hpp"
+#include "Trie/TrieTree.hpp"
 
 using namespace std;
 namespace fs = std::filesystem;
@@ -305,12 +305,12 @@ int main() {
     // Garante que as pastas de saida output/dots/ e output/images/ existam
     criarEstruturaPastas();
 
-    // Processamento das arvores lendo dos arquivos em data/
-    processarKDTree("data/kdtree_input.txt");
-    processarPatricia("data/patricia_input.txt");
-    processarTrie("data/trie_input.txt");
-    processarSplay("data/splay_input.txt");
-    processarTreap("data/treap_input.txt");
+    // Processamento das arvores lendo dos arquivos em input/
+    processarKDTree("input/kdtree_input.txt");
+    processarPatricia("input/patricia_input.txt");
+    processarTrie("input/trie_input.txt");
+    processarSplay("input/splay_input.txt");
+    processarTreap("input/treap_input.txt");
 
     cout << "\n=========================================================" << endl;
     cout << "  Execucao concluida!                                   " << endl;

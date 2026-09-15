@@ -1,14 +1,14 @@
 digraph KDTree {
     node [shape=record, style=filled, fillcolor=lightgreen];
-    node0x5f27b2dd4770 [label="(51, 75) | Eixo 0"];
-    node0x5f27b2dd4770 -> node0x5f27b2dd6bf0 [label="<"];
-    node0x5f27b2dd6bf0 [label="(25, 40) | Eixo 1"];
-    node0x5f27b2dd6bf0 -> node0x5f27b2dd6c90 [label="<"];
-    node0x5f27b2dd6c90 [label="(10, 30) | Eixo 0"];
-    node0x5f27b2dd6bf0 -> node0x5f27b2dd6ce0 [label=">="];
-    node0x5f27b2dd6ce0 [label="(35, 90) | Eixo 0"];
-    node0x5f27b2dd4770 -> node0x5f27b2dd6c40 [label=">="];
-    node0x5f27b2dd6c40 [label="(70, 70) | Eixo 1"];
-    node0x5f27b2dd6c40 -> node0x5f27b2dd6d30 [label="<"];
-    node0x5f27b2dd6d30 [label="(55, 10) | Eixo 0"];
+    node0x562a82bce770 [label="(51, 75) | Eixo 0"];
+    node0x562a82bce770 -> node0x562a82bd0bf0 [label="<"];
+    node0x562a82bd0bf0 [label="(25, 40) | Eixo 1"];
+    node0x562a82bd0bf0 -> node0x562a82bd0c90 [label="<"];
+    node0x562a82bd0c90 [label="(10, 30) | Eixo 0"];
+    node0x562a82bd0bf0 -> node0x562a82bd0ce0 [label=">="];
+    node0x562a82bd0ce0 [label="(35, 90) | Eixo 0"];
+    node0x562a82bce770 -> node0x562a82bd0c40 [label=">="];
+    node0x562a82bd0c40 [label="(70, 70) | Eixo 1"];
+    node0x562a82bd0c40 -> node0x562a82bd0d30 [label="<"];
+    node0x562a82bd0d30 [label="(55, 10) | Eixo 0"];
 }
