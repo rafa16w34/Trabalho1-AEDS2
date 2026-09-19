@@ -1,16 +1,16 @@
 digraph TreapTree {
     node [shape=record, style=filled, fillcolor=lightblue];
-    node0x562a82bd0bd0 [label="40\np=1842508099"];
-    node0x562a82bd0bd0 -> node0x562a82bd0c20 [label="L"];
-    node0x562a82bd0c20 [label="30\np=1359006051"];
-    node0x562a82bd0c20 -> node0x562a82bd0c70 [label="L"];
-    node0x562a82bd0c70 [label="20\np=675469095"];
-    node0x562a82bd0bd0 -> node0x562a82bd0d60 [label="R"];
-    node0x562a82bd0d60 [label="70\np=1449659404"];
-    node0x562a82bd0d60 -> node0x562a82bce840 [label="L"];
-    node0x562a82bce840 [label="60\np=1218789117"];
-    node0x562a82bce840 -> node0x562a82bd0cc0 [label="L"];
-    node0x562a82bd0cc0 [label="50\np=435101468"];
-    node0x562a82bd0d60 -> node0x562a82bd33f0 [label="R"];
-    node0x562a82bd33f0 [label="80\np=112785330"];
+    node0x5cd3e0de73f0 [label="80\np=1935053623"];
+    node0x5cd3e0de73f0 -> node0x5cd3e0de4bd0 [label="L"];
+    node0x5cd3e0de4bd0 [label="40\np=1445647845"];
+    node0x5cd3e0de4bd0 -> node0x5cd3e0de4c70 [label="L"];
+    node0x5cd3e0de4c70 [label="20\np=452077707"];
+    node0x5cd3e0de4c70 -> node0x5cd3e0de4c20 [label="R"];
+    node0x5cd3e0de4c20 [label="30\np=348600068"];
+    node0x5cd3e0de4bd0 -> node0x5cd3e0de2840 [label="R"];
+    node0x5cd3e0de2840 [label="60\np=1417168943"];
+    node0x5cd3e0de2840 -> node0x5cd3e0de4cc0 [label="L"];
+    node0x5cd3e0de4cc0 [label="50\np=715176197"];
+    node0x5cd3e0de2840 -> node0x5cd3e0de4d60 [label="R"];
+    node0x5cd3e0de4d60 [label="70\np=743586284"];
 }

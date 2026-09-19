@@ -1,16 +1,16 @@
 digraph SplayTree {
     node [shape=circle, style=filled, fillcolor=lightyellow];
-    node0x562a82bd0b90 [label="40"];
-    node0x562a82bd0b90 -> node0x562a82bd0d10 [label="L"];
-    node0x562a82bd0d10 [label="30"];
-    node0x562a82bd0d10 -> node0x562a82bd0b70 [label="L"];
-    node0x562a82bd0b70 [label="20"];
-    node0x562a82bd0b90 -> node0x562a82bd0b00 [label="R"];
-    node0x562a82bd0b00 [label="70"];
-    node0x562a82bd0b00 -> node0x562a82bd0bb0 [label="L"];
-    node0x562a82bd0bb0 [label="50"];
-    node0x562a82bd0bb0 -> node0x562a82bd0db0 [label="R"];
-    node0x562a82bd0db0 [label="60"];
-    node0x562a82bd0b00 -> node0x562a82bd0df0 [label="R"];
-    node0x562a82bd0df0 [label="80"];
+    node0x5cd3e0de4b90 [label="40"];
+    node0x5cd3e0de4b90 -> node0x5cd3e0de4d10 [label="L"];
+    node0x5cd3e0de4d10 [label="30"];
+    node0x5cd3e0de4d10 -> node0x5cd3e0de4b70 [label="L"];
+    node0x5cd3e0de4b70 [label="20"];
+    node0x5cd3e0de4b90 -> node0x5cd3e0de4b00 [label="R"];
+    node0x5cd3e0de4b00 [label="70"];
+    node0x5cd3e0de4b00 -> node0x5cd3e0de4bb0 [label="L"];
+    node0x5cd3e0de4bb0 [label="50"];
+    node0x5cd3e0de4bb0 -> node0x5cd3e0de4db0 [label="R"];
+    node0x5cd3e0de4db0 [label="60"];
+    node0x5cd3e0de4b00 -> node0x5cd3e0de4df0 [label="R"];
+    node0x5cd3e0de4df0 [label="80"];
 }
